@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head"></head>
+<body>
+<section id="flight-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Edit <span style="color:#4BB543;">Successful!</span></h2>
+                <div class="user-info-content">
+                    <p><b>Email:</b> <span th:text="${userEmail}"></span></p>
+                    <p><b>First Name:</b> <span th:text="${userFirstName}"></span></p>
+                    <p><b>Last Name:</b> <span th:text="${userLastName}"></span></p>
+                    <p><b>Role:</b> <span th:text="${userRole}"></span></p>
+                </div>
+                <a th:href="@{/admin/settings/users}"><button type="button" class="btn btn-primary">Back to Users Settings</button></a>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

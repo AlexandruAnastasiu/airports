@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head"></head>
+<body>
+<div th:replace="fragments :: menu" />
+<div class="container">
+    <h1>Edit <span style="color: red;">Role</span> for User: <span th:text="${myUser.firstName}"></span> <span th:text="${myUser.lastName}"></span></h1>
+    <section id="editForm">
+        <form th:action="@{/admin/settings/users/editRole/result}" method="post" th:object="${myUser}">
+            <input type="hidden" th:field="*{id}" th:value="${myUser.id}"/>
+            <div class="input-group">
+                <label for="role">Role: </label>
+                <br/><br/>
+                <input id="role" type="text" class="form-control" name="role" placeholder="role" th:value="${myUser.role}" th:field="*{role}" />
+            </div>
+            <button type="submit" class="btn btn-danger">Save Changes</button>
+        </form>
+    </section>
+</div>
+</body>
+</html>

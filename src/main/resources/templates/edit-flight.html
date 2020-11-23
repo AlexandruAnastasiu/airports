@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head"></head>
+<body>
+<div th:replace="fragments :: menu" />
+<div class="container">
+    <h1>Edit Flight: <span th:text="${flightNo}"></span></h1>
+    <section id="editForm">
+        <form th:action="@{/admin/settings/flights/edit/result/} + ${flightId}" method="post" th:object="${flightCreator}">
+            <div class="input-group">
+                <label for="flightNumber">Flight Number:</label>
+                <input id="flightNumber" type="text" class="form-control" name="flightNo" placeholder="Flight Number" th:value="${flightCreator.flightNo}" th:field="*{flightNo}" />
+            </div>
+            <div class="input-group">
+                <label for="departureTime">Departure Time:</label>
+                <input id="departureTime" type="datetime-local" class="form-control" name="departure" placeholder="Departure Time" th:value="${flightCreator.departure}" th:field="*{departure}" />
+            </div>
+            <div class="input-group">
+                <label for="arrivalTime">Arrival Time:</label>
+                <input id="arrivalTime" type="datetime-local" class="form-control" name="arrival" placeholder="Arrival Time" th:value="${flightCreator.arrival}" th:field="*{arrival}" />
+            </div>
+            <div class="input-group">
+                <label for="departureAirport">Departure Airport:</label>
+                <input id="departureAirport" type="text" class="form-control" name="departureAirport" placeholder="Departure Airport" th:value="${flightCreator.departureAirportName}" th:field="*{departureAirportName}" />
+            </div>
+            <script type="text/javascript" th:src="@{/js/custom.js}"></script>
+            <script th:inline="javascript">
+                    var names = [[${airportNames}]];
+                    autocomplete(document.getElementById("arrivalAirport"), names);
+            </script>
+            <div class="input-group">
+                <label for="arrivalAirport">Arrival Airport:</label>
+                <input id="arrivalAirport" type="text" class="form-control" name="arrivalAirport" placeholder="Arrival Airport" th:value="${flightCreator.arrivalAirportName}" th:field="*{arrivalAirportName}" />
+            </div>
+            <script th:inline="javascript">
+                    var names = [[${airportNames}]];
+                    autocomplete(document.getElementById("arrivalAirport"), names);
+            </script>
+
+            <div class="input-group">
+                <label for="airline">Airline:</label>
+                <input id="airline" type="text" class="form-control" name="airline" placeholder="Airline" th:value="${flightCreator.airlineName}" th:field="*{airlineName}" />
+            </div>
+            <script th:inline="javascript">
+                    var arNames = [[${airlineNames}]];
+                    autocomplete(document.getElementById("airline"), arNames);
+            </script>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </section>
+</div>
+</body>
+</html>

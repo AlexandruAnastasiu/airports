@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head"></head>
+<body>
+<section id="flight-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Edit <span style="color:#4BB543;">Successful!</span></h2>
+                <div class="airport-info-content">
+                    <p><b>Flight Number:</b> <span th:text="${flightNo}"></span></p>
+                    <p><b>Departure Time :</b> <span th:text="${departure}"></span></p>
+                    <p><b>Arrival Time :</b> <span th:text="${arrival}"></span></p>
+                    <p><b>Departure Airport:</b> <span th:text="${departureAirportName}"></span></p>
+                    <p><b>Arrival Airport:</b> <span th:text="${arrivalAirportName}"></span></p>
+                    <p><b>Airline :</b> <span th:text="${airlineName}"></span></p>
+                </div>
+                <a th:href="@{/admin/settings/flights}"><button type="button" class="btn btn-primary">Back to Flights Settings</button></a>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

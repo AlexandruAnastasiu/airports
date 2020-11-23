@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head">
+</head>
+<body>
+<div th:replace="fragments :: menu" />
+<div class="container">
+    <div>
+        <h1>Users Settings
+            <span>
+                <img th:src="@{/img/settings.png}" id="airports_settings" style="max-width: 100%; max-height: 100%; width: auto; height: auto"/>
+            </span>
+        </h1><br/>
+    </div>
+    <div align="center">
+        <form th:action="@{/admin/settings/users/page/1}">
+            <input type="hidden" name="sortField" th:value="${sortField}" />
+            <input type="hidden" name="sortDir" th:value="${sortDir}" />
+            Search Users by Email, First Name or Last Name:
+            <input type="text" name="keyword" id="keyword" size="50" placeholder="Email / First Name / Last Name" th:value="${keyword}" required/>
+            &nbsp;
+            <input type="submit" value="Search" />
+            &nbsp;
+            <input type="button" value="clear" id="btnClear" onclick="clearSearch()"/>
+        </form>
+    </div>
+    <div>&nbsp;</div>
+    <div>
+        <table class="table table-bordered" id="mydata">
+            <thead>
+            <th scope="col">
+                <a th:href="@{'/admin/settings/users/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}
+                            + ${keyword != null ? '&keyword=' + keyword : ''}}">
+                    Email
+                </a>
+            </th>
+            <th scope="col">
+                <a th:href="@{'/admin/settings/flights/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}
+                            + ${keyword != null ? '&keyword=' + keyword : ''}}">
+                    First Name
+                </a>
+            </th>
+            <th scope="col">
+                <a th:href="@{'/admin/settings/flights/page/' + ${currentPage} + '?sortField=lastName&sortDir=' + ${reverseSortDir}
+                            + ${keyword != null ? '&keyword=' + keyword : ''}}">
+                    Last Name
+                </a>
+            </th>
+            <th scope="col">
+                <a th:href="@{'/admin/settings/flights/page/' + ${currentPage} + '?sortField=role&sortDir=' + ${reverseSortDir}
+                            + ${keyword != null ? '&keyword=' + keyword : ''}}">
+                    Role
+                </a>
+            </th>
+            </th>
+            <th>Actions</th>
+            </thead>
+            <tbody>
+            <tr th:each="u : ${users}"> <!-- table row -->
+                <td th:text="${u.email}"></td> <!-- table data -->
+                <td th:text="${u.firstName}"></td>
+                <td th:text="${u.lastName}"></td>
+                <td th:text="${u.role}"></td>
+                <td>
+                    <a th:href="@{/admin/settings/users/editRole/} + ${u.id}">
+                        <img th:src="@{/img/edit.png}" id="edit" style="max-width: 100%; max-height: 100%; width: auto; height: auto"/>
+                    </a>
+                    <a th:href="@{/admin/settings/flights/delete/} + ${u.id}">
+                        <img th:src="@{/img/delete.png}" id="delete" style="max-width: 100%; max-height: 100%; width: auto; height: auto"/>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        Total Items: [[${totalItems}]] - Page [[${currentPage}]] of [[${totalPages}]]
+        &nbsp; - &nbsp;
+
+        <!-- FIRST BUTTON -->
+        <a th:if="${currentPage > 1}" th:href="@{'/admin/settings/users/page/1?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
+                                                + ${keyword != null ? '&keyword=' + keyword : ''}}">First</a>
+        <span th:unless="${currentPage > 1}">First</span>
+        &nbsp;&nbsp;
+
+        <!-- PREVIOUS BUTTON -->
+        <a th:if="${currentPage > 1}" th:href="@{'/admin/settings/users/page/' + ${currentPage - 1}  + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
+                                                + ${keyword != null ? '&keyword=' + keyword : ''}}">Previous</a>
+        <span th:unless="${currentPage > 1}">Previous</span>
+        &nbsp;&nbsp;
+
+        <!-- PAGE NUMBERS SEQUENCE -->
+        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+            <a th:if="${i != currentPage}" th:href="@{'/admin/settings/users/page/' + ${i}} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
+                    + ${keyword != null ? '&keyword=' + keyword : ''}">
+                [[${i}]]
+            </a>
+            <span th:unless="${i != currentPage}">[[${i}]]</span>
+            &nbsp;&nbsp;
+        </span>
+
+        <!-- NEXT BUTTON -->
+        <a th:if="${currentPage < totalPages}" th:href="@{'/admin/settings/users/page/' + ${currentPage + 1}  + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
+                                                        + ${keyword != null ? '&keyword=' + keyword : ''}}">Next</a>
+        <span th:unless="${currentPage < totalPages}">Next</span>
+        &nbsp;&nbsp;
+
+        <!-- LAST BUTTON -->
+        <a th:if="${currentPage < totalPages}" th:href="@{'/admin/settings/users/page/' + ${totalPages}  + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}
+                                                        + ${keyword != null ? '&keyword=' + keyword : ''}}">Last</a>
+        <span th:unless="${currentPage < totalPages}">Last</span>
+    </div>
+</div>
+<script type="text/javascript">
+            function clearSearch() {
+                window.location = "[[@{/admin/settings/users}]]";
+            }
+</script>
+</body>
+</html>

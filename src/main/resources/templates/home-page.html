@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head">
+    <title>Home</title>
+</head>
+<body>
+<div th:replace="fragments :: menu" />
+<section id="home">
+    <div class="banner">
+        <video th:src="@{/img/proij.mp4}" id="home-bg-video" autoplay loop muted></video>
+        <div class="overlay">
+            <div id="home-content">
+                <div id="home-content-inner" class="text-left">
+                    <div id="home-heading">
+                        <h1 id="home-heading-1">Find your <span>flight!</span></h1>
+                    </div>
+                    <div id="home-text">
+                        <form th:action="@{/flightresults}" method="post" th:object="${flightSearch}">
+                            <div class="input-group">
+                                <input id="flight_no" type="text" class="form-control" name="flight_no" placeholder="Flight Number" th:field="*{flight_no}" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-------About-------->
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>About us</h2>
+                <div class="about-content">
+                    This is my final project within the java development courses held by siit.ro
+                    This application offers functionalities meant for airport management such as
+                    finding airports, airlines and flights.
+                </div>
+                <button type="button" class="btn btn-primary">Read more</button>
+            </div>
+            <div class="col-md-6">
+                <h2>Find an airport!</h2>
+                <form autocomplete="off" th:action="@{/airportresults}" method="post" th:object="${airportSearch}">
+                    <div class="form-group">
+                        <label for="inputName">Search by airport name:</label>
+                        <div class="autocomplete">
+                            <input id="inputName" type="text" class="form-control" name="name" placeholder="Airport Name" th:field="*{name}" />
+                        </div>
+                        <script type="text/javascript" th:src="@{/js/custom.js}"></script>
+                        <script th:inline="javascript">
+                            var names = [[${airportNames}]];
+                            autocomplete(document.getElementById("inputName"), names);
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputName">Search by IATA/ICAO code:</label>
+                        <input id="iataOrIcao" type="text" class="form-control" name="iataOrIcao" placeholder="IATA/ICAO" th:field="*{iataOrIcao}" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

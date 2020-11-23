@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head">
+    <title>Flight</title>
+</head>
+<body>
+<div th:replace="fragments :: menu" />
+<div class="container">
+    <h1>Edit Airline:</h1>
+
+    <div class="row">
+        <div class="col-md-4 mt-2">
+            <form th:action="@{/admin/settings/airlines/edit/result}" method="post" th:object="${myAirline}">
+
+                <input type="hidden" th:field="*{id}" th:value="${myAirline.id}"/>
+
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text"  id="name" placeholder="Airline Name" th:field="*{name}" th:value="${myAirline.name}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="alias">Alias:</label>
+                    <input type="text"  id="alias" th:field="*{alias}" th:value="${myAirline.alias}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="iata">Iata Code:</label>
+                    <input type="text"  id="iata" th:field="*{iata}" th:value="${myAirline.iata}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="icao">Icao Code:</label>
+                    <input type="text"  id="icao" th:field="*{icao}" th:value="${myAirline.icao}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="callsign">Callsign:</label>
+                    <input type="text"  id="callsign" th:field="*{callsign}" th:value="${myAirline.callsign}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <input type="text"  id="country" th:field="*{country}" th:value="${myAirline.country}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="active">Active:</label>
+                    <input type="checkbox"  id="active" th:field="*{active}" th:value="${myAirline.active}" class="form-control"/>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

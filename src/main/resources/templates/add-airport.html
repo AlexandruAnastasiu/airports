@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head">
+    <title>Add Airport</title>
+</head>
+<body>
+<div th:replace="fragments :: menu" />
+<div class="container">
+    <h1><span style="color:#4BB543;">New</span> Airport:</h1>
+
+    <div class="row">
+        <div class="col-md-4 mt-2">
+            <form th:action="@{/admin/settings/airports/post-add}" method="post" th:object="${airport}">
+
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" required id="name" placeholder="Airport Name" th:field="*{name}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text"  required id="city" placeholder="City" th:field="*{city}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <input type="text"  required id="country" placeholder="Country" th:field="*{country}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="iata">Iata Code:</label>
+                    <input type="text" maxlength="3" size="3" id="iata" placeholder="IATA" th:field="*{iata}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="icao">Icao Code:</label>
+                    <input type="text" maxlength="4" size="4" id="icao" placeholder="ICAO" th:field="*{icao}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="latitude">Latitude:</label>
+                    <input type="number"  id="latitude" placeholder="Latitude" th:field="*{latitude}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="longitude">Longitude:</label>
+                    <input type="number"  id="longitude" placeholder="Longitude" th:field="*{longitude}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="altitude">Altitude:</label>
+                    <input type="number"  id="altitude" placeholder="Altitude" th:field="*{altitude}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="timezone">Timezone:</label>
+                    <input type="number"  id="timezone" placeholder="Timezone" th:field="*{timezone}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="dst">DST:</label>
+                    <input type="text"  id="dst" placeholder="DST" th:field="*{dst}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="tz">TZ:</label>
+                    <input type="text"  id="tz" placeholder="TZ" th:field="*{tz}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <input type="text"  id="type" placeholder="Type" th:field="*{type}" class="form-control"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="source">Source:</label>
+                    <input type="text"  id="source" placeholder="Source" th:field="*{source}" class="form-control"/>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

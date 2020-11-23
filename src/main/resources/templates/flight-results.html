@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head">
+    <title>Flight</title>
+</head>
+<body>
+<div th:replace="fragments :: menu" />
+<div class="container">
+    <h1>Flight</h1>
+    <table class="table">
+        <thead>
+        <th scope="col">Flight Number</th> <!-- heading for each column -->
+        <th scope="col">Departure time</th>
+        <th scope="col">Arrival time</th>
+        <th scope="col">Departure Airport</th>
+        <th scope="col">Arrival Airport</th>
+        <th scope="col">Airline</th>
+        </thead>
+        <tbody>
+        <tr th:each="f : ${myFlights}"> <!-- table row -->
+            <td th:text="${f.flightNo}"></td> <!-- table data -->
+            <td th:text="${f.departure}"></td>
+            <td th:text="${f.arrival}"></td>
+            <td>
+                <a th:href="@{/airport/} + ${f.departureAirport.id}" th:text="${f.departureAirport.name}">
+            </td>
+            <td>
+                <a th:href="@{/airport/} + ${f.arrivalAirport.id}" th:text="${f.arrivalAirport.name}">
+            </td>
+            <td th:text="${f.airline.getName()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

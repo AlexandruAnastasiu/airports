@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/custom.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments :: menu" />
+<div class="container" id="departure-tabel">
+    <h3>Departures: <span th:text="${dateRangeSearch.startDate}" />  ->  <span th:text="${dateRangeSearch.endDate}"/></h3>
+    <table class="table table-fluid" id="mydata1">
+        <thead>
+        <th scope="col">Flight Number</th> <!-- heading for each column -->
+        <th scope="col">Departure time</th>
+        <th scope="col">Arrival time</th>
+        <th scope="col">Departure Airport</th>
+        <th scope="col">Arrival Airport</th>
+        <th scope="col">Airline</th>
+        </thead>
+        <tbody>
+        <tr th:each="f : ${departures}"> <!-- table row -->
+            <td th:text="${f.flightNo}"></td> <!-- table data -->
+            <td th:text="${f.departure}"></td>
+            <td th:text="${f.arrival}"></td>
+            <td>
+                <a th:href="@{/airport/} + ${f.departureAirport.id}" th:text="${f.departureAirport.name}">
+            </td>
+            <td>
+                <a th:href="@{/airport/} + ${f.arrivalAirport.id}" th:text="${f.arrivalAirport.name}">
+            </td>
+            <td th:text="${f.airline.getName()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <script>
+        $(document).ready( function () {
+        $('#mydata1').DataTable();
+    } );
+    </script>
+</div>
+<div class="container" id="arrival-tabel" style="margin-top:70px;">
+    <h3>Arrivals: <span th:text="${dateRangeSearch.startDate}" />  ->  <span th:text="${dateRangeSearch.endDate}"/></h3>
+    <table class="table table-fluid" id="mydata2">
+        <thead>
+        <th scope="col">Flight Number</th> <!-- heading for each column -->
+        <th scope="col">Departure time</th>
+        <th scope="col">Arrival time</th>
+        <th scope="col">Departure Airport</th>
+        <th scope="col">Arrival Airport</th>
+        <th scope="col">Airline</th>
+        </thead>
+        <tbody>
+        <tr th:each="f : ${arrivals}"> <!-- table row -->
+            <td th:text="${f.flightNo}"></td> <!-- table data -->
+            <td th:text="${f.departure}"></td>
+            <td th:text="${f.arrival}"></td>
+            <td>
+                <a th:href="@{/airport/} + ${f.departureAirport.id}" th:text="${f.departureAirport.name}">
+            </td>
+            <td>
+                <a th:href="@{/airport/} + ${f.arrivalAirport.id}" th:text="${f.arrivalAirport.name}">
+            </td>
+            <td th:text="${f.airline.getName()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <script>
+        $(document).ready( function () {
+        $('#mydata2').DataTable();
+    } );
+    </script>
+</div>
+</body>
+</html>

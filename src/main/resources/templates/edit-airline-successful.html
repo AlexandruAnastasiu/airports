@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head"></head>
+<body>
+<section id="airline-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Edit <span style="color:#4BB543;">Successful!</span></h2>
+                <div class="airline-info-content">
+                    <p><b>Airline name:</b> <span th:text="${airlineName}"></span></p>
+                    <p><b>Alias:</b> <span th:text="${airlineAlias}"></span></p>
+                    <p><b>Iata Code:</b> <span th:text="${airlineIata}"></span></p>
+                    <p><b>Icao Code:</b> <span th:text="${airlineIcao}"></span></p>
+                    <p><b>Country:</b> <span th:text="${airlineCountry}"></span></p>
+                    <p><b>Active:</b> <span th:text="${airlineActive}"></span></p>
+                </div>
+                <a th:href="@{/admin/settings/airlines}"><button type="button" class="btn btn-primary">Back to Airlines Settings</button></a>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

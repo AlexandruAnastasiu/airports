@@ -1,0 +1,105 @@
+/*--------------Navigation--------------*/
+#nav-bar
+{
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+.navbar-brand img
+{
+	height: 40px;
+	padding-left: 30px;
+}
+.navbar-nav li
+{
+	padding: 0 10px;
+}
+.navbar-nav li a
+{
+	float: right;
+	text-align: left;
+}
+#nav-bar ul li a:hover
+{
+	color: #f4c613!important;
+}
+.navbar
+{
+	background-color: transparent !important;
+	background-image: linear-gradient(rgb(0, 47, 93), rgb(0, 47, 93) 60%, rgb(2, 22, 36));
+}
+.navbar-toggler
+{
+	border: none!important;
+}
+.nav-link
+{
+	color: #fff!important;
+	font-weight: 600;
+	font-size: 16px;
+}
+.btn.btn-success {
+  color: #ffffff;
+  background-color: #f4c613;
+  border-color: #f4c613;
+  border-radius: 28px;
+  font-size: 15px;
+  text-transform: uppercase;
+  margin: 0 6px;
+  padding: 8px 27px 8px 27px;
+  transition: all 0.4s;
+  background-color: #f4c613;
+  color: white;
+}
+.btn.btn-success:hover {
+  color: #f4c613;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.btn.btn-success:focus, .btn.btn-success.focus {
+  color: #ffffff;
+  background-color: #f4c613;
+  border-color: #f4c613;
+  box-shadow: 0 0 0 0.2rem rgba(244,198,19,1);
+}
+.btn.btn-success.disabled, .btn.btn-success:disabled {
+  color: #ffffff;
+  background-color: #f4c613;
+  border-color: #f4c613;
+}
+.btn.btn-success:not(:disabled):not(.disabled):active,
+.btn.btn-success:not(:disabled):not(.disabled).active {
+  color: #ffffff;
+  background-color: #f4c613;
+  border-color: #f4c613;
+}
+.show > .btn.btn-success.dropdown-toggle {
+  color: #ffffff;
+  background-color: #f4c613;
+  border-color: #f4c613;
+}
+.show > .btn.btn-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(244,198,19,1);
+}
+.btn.btn-success:not(:disabled):not(.disabled):active:focus,
+.btn.btn-success:not(:disabled):not(.disabled).active:focus {
+  box-shadow: 0 0 0 0.2rem rgba(244,198,19,1);
+}
+/*---------ModalLogin----------*/
+#loginModal {
+   position: absolute;
+   top: 30%;
+}
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.settings-column {
+  float: left;
+  width: 30%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: html_head">
+    <title>Flight</title>
+</head>
+<body>
+<div th:replace="fragments :: menu" />
+
+<section id="advanced-search-form">
+    <div class="container">
+        <h2>Search flights for: <span th:text="${airportName}" style="color: #f4c613;"/></h2>
+        <div class="row">
+            <div class="col-md-6">
+                <form th:action="@{/search/flights/advanced/result(airportName=${airportName})}" method="post" th:object="${dateRangeSearch}">
+                    <div class="form-group">
+                        <label for="startDate">From Date:</label>
+                        <input id="startDate" type="date" class="form-control" name="startDate" placeholder="yyyy-mm-dd" th:type="date" th:field="*{startDate}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">To Date:</label>
+                        <input id="endDate" type="date" class="form-control" name="endDate" placeholder="yyyy-mm-dd" th:type="date" th:field="*{endDate}"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
