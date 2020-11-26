@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         final String[] staticContent = {"/templates/**","/styles/**", "/img/**", "/js/**"};
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/index", "/airportresults", "/flightresults", "/search/flights/advanced").permitAll()
+                .antMatchers("/", "/home", "/index", "/airportresults", "/flightresults", "/search/flights/advanced", "/airport/{airportId}").permitAll()
                 .antMatchers(staticContent).permitAll()
                 .anyRequest().authenticated()
                 .and()
