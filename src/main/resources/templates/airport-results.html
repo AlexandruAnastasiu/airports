@@ -33,6 +33,7 @@
                 <a th:href="@{/search/flights/advanced(airportName=${airportName})}"><button type="button" class="btn btn-primary">Advanced Flight Search</button></a>
             </div>
             <div class="col-md-6">
+                <!--
                 <div id="map" style="height: 350px; width: 650px; border: 1px solid #AAA;"></div>
                 <script th:inline="javascript">
                    var latitude = [[${airportLatitude}]];
@@ -44,6 +45,11 @@
                    }).addTo(map);
                    var marker = L.marker([latitude, longitude]).addTo(map);
                 </script>
+                -->
+                <iframe style="width: 700px; height: 400px" th:src="@{'https://maps.google.com/maps?q=' +
+                      ${airportLatitude} + ',' +
+                      ${airportLongitude} + '&output=embed'}">
+                </iframe>
             </div>
         </div>
     </div>
