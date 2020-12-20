@@ -6,12 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import ro.siit.airports.domain.Airline;
 import ro.siit.airports.domain.Airport;
 import ro.siit.airports.domain.Flight;
 import ro.siit.airports.model.AirportSearch;
 import ro.siit.airports.model.FlightSearch;
 import ro.siit.airports.repository.AirportRepository;
 import ro.siit.airports.repository.FlightRepository;
+import ro.siit.airports.service.AirlineService;
 import ro.siit.airports.service.AirportService;
 import ro.siit.airports.service.FlightService;
 
@@ -25,6 +27,9 @@ public class HomeController {
 
     @Autowired
     private AirportService airportService;
+
+    @Autowired
+    private AirlineService airlineService;
 
     @Autowired
     private AirportRepository airportRepository;
@@ -41,6 +46,10 @@ public class HomeController {
         model.addAttribute("flightSearch", new FlightSearch());
         List<String> airportNames = airportRepository.findAll().stream().map(a -> a.getName()).collect(Collectors.toList());
         model.addAttribute("airportNames", airportNames);
+        Integer currentTraffic = flightService.getCurrentTraffic();
+        model.addAttribute("currentTraffic", currentTraffic);
+        Airline mostFlownAirline = airlineService.getMostFlownAirline();
+        model.addAttribute("mostFlownAirline", mostFlownAirline.getName());
         return "home-page";
     }
 

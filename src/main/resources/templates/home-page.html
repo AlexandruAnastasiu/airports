@@ -35,13 +35,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h2>About us</h2>
+                <h2>Worldwide Flight Traffic Statistics</h2>
                 <div class="about-content">
-                    This is my final project within the java development courses held by siit.ro
-                    This application offers functionalities meant for airport management such as
-                    finding airports, airlines and flights.
+                    <div class="content-currentTraffic">
+                        <b>Current Traffic :</b> <span th:text="${currentTraffic}" style="color:#07c; font-size:30px; line-height: 32px; font-weight:bold;"/> airborne flights
+                    </div>
+                    <br>
+                    <div class="content-mostFlownAirline">
+                        <b>Most Flown Airline:</b> <span th:text="${mostFlownAirline}" style="color:#07c; font-size:30px; line-height: 32px; font-weight:bold;"/>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-primary">Read more</button>
             </div>
             <div class="col-md-6">
                 <h2>Find an airport!</h2>

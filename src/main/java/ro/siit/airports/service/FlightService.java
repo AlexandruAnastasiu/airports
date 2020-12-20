@@ -19,4 +19,5 @@ public interface FlightService {
     Flight insertIntoDatabase(Flight flight);
     Flight createFlight(FlightCreator flightCreator);
     Flight editFlight(Flight initialFlight, FlightCreator flightWithData);
+    Integer getCurrentTraffic();
 }
