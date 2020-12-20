@@ -6,17 +6,25 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import ro.siit.airports.domain.Airline;
 import ro.siit.airports.domain.Airport;
+import ro.siit.airports.domain.Flight;
 import ro.siit.airports.model.AirportSearch;
 import ro.siit.airports.repository.AirportRepository;
+import ro.siit.airports.repository.FlightRepository;
 import ro.siit.airports.service.AirportService;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 
 @Service
 public class AirportServiceImpl implements AirportService {
-
+    @Autowired
+    private FlightRepository flightRepository;
     @Autowired
     private AirportRepository airportRepository;
 
@@ -52,5 +60,18 @@ public class AirportServiceImpl implements AirportService {
     @Override
     public Airport insertIntoDatabase(Airport myAirport) {
         return airportRepository.save(myAirport);
+    }
+
+    @Override
+    public Airport getBusiestAirport() {
+        List<Flight> allFlights = flightRepository.findAll();
+
+        List<Airport> departureAirportsList = allFlights.stream().map(e -> e.getDepartureAirport()).collect(Collectors.toList());
+        List<Airport> arrivalAirportsList = allFlights.stream().map(e -> e.getArrivalAirport()).collect(Collectors.toList());
+        List<Airport> airportsList = departureAirportsList;
+        airportsList.addAll(arrivalAirportsList);
+        Airport busiestAirport = airportsList.stream().reduce(BinaryOperator.maxBy((o1, o2) -> Collections.frequency(airportsList, o1) -
+                Collections.frequency(airportsList, o2))).orElse(null);
+        return busiestAirport;
     }
 }

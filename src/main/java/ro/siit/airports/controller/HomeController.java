@@ -50,6 +50,9 @@ public class HomeController {
         model.addAttribute("currentTraffic", currentTraffic);
         Airline mostFlownAirline = airlineService.getMostFlownAirline();
         model.addAttribute("mostFlownAirline", mostFlownAirline.getName());
+        Airport busiestAirport = airportService.getBusiestAirport();
+        model.addAttribute("busiestAirportName", busiestAirport.getName());
+        model.addAttribute("busiestAirportId", busiestAirport.getId());
         return "home-page";
     }
 

@@ -38,11 +38,15 @@
                 <h2>Worldwide Flight Traffic Statistics</h2>
                 <div class="about-content">
                     <div class="content-currentTraffic">
-                        <b>Current Traffic :</b> <span th:text="${currentTraffic}" style="color:#07c; font-size:30px; line-height: 32px; font-weight:bold;"/> airborne flights
+                        <b>Current Traffic :</b> <span th:text="${currentTraffic}" style="color:#07c; font-size:25px; line-height: 32px; font-weight:bold;"/> airborne flights
                     </div>
                     <br>
                     <div class="content-mostFlownAirline">
-                        <b>Most Flown Airline:</b> <span th:text="${mostFlownAirline}" style="color:#07c; font-size:30px; line-height: 32px; font-weight:bold;"/>
+                        <b>Most Flown Airline:</b> <span th:text="${mostFlownAirline}" style="color:#07c; font-size:25px; line-height: 32px; font-weight:bold;"/>
+                    </div>
+                    <br>
+                    <div class="content-mostFlownAirline">
+                        <b>Busiest Airport:</b> <span style="color:#07c; font-size:25px; line-height: 32px; font-weight:bold;"> <a th:href="@{/airport/} + ${busiestAirportId}" th:text="${busiestAirportName}"/></span>
                     </div>
                 </div>
             </div>

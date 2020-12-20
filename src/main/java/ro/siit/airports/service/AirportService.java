@@ -12,4 +12,5 @@ public interface AirportService {
     Optional<Airport> findFilteredAirports(AirportSearch search);
     Page<Airport> listAllAirports(int pageNumber, String sortField, String sortDir, String keyword);
     Airport insertIntoDatabase(Airport myAirport);
+    Airport getBusiestAirport();
 }
