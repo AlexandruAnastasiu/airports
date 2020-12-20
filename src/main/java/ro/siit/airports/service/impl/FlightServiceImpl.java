@@ -42,6 +42,7 @@ public class FlightServiceImpl implements FlightService {
         return flights.stream()
                 .filter(f -> f.getDeparture().toLocalDate().equals(LocalDateTime.now().toLocalDate()))
                 .collect(Collectors.toList());
+
     }
 
     @Override
@@ -52,6 +53,7 @@ public class FlightServiceImpl implements FlightService {
         return flights.stream()
                 .filter(f -> f.getArrival().toLocalDate().equals(LocalDateTime.now().toLocalDate()))
                 .collect(Collectors.toList());
+
     }
 
     @Override
@@ -133,14 +135,5 @@ public class FlightServiceImpl implements FlightService {
         initialFlight.setAirline(airline);
 
         return initialFlight;
-    }
-
-    @Override
-    public Integer getCurrentTraffic() {
-        Integer currentFlights = flightRepository.findAll().stream()
-                .filter(f -> f.getArrival().isAfter(LocalDateTime.now()) && f.getDeparture().isBefore(LocalDateTime.now()))
-                .reduce(0, (a,b) -> a + 1, (a,b) -> a + b);
-
-        return currentFlights;
     }
 }
