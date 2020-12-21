@@ -13,6 +13,8 @@ import ro.siit.airports.domain.UserDto;
 import ro.siit.airports.repository.UserRepository;
 import ro.siit.airports.service.UserService;
 
+import javax.transaction.Transactional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -37,7 +39,7 @@ public class UserServiceImpl implements UserService {
     public User insertIntoDatabase(User myUser) {
         return userRepository.save(myUser);
     }
-
+    @Transactional
     @Override
     public User registerNewUserAccount(final UserDto userDto) {
         User user = new User();
