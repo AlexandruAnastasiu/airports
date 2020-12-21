@@ -40,7 +40,7 @@
                     <ul>
                         <li>
                             <div class="content-currentTraffic">
-                                <b>Current Traffic :</b> <span th:text="${currentTraffic}" style="color:#07c; font-size:20px; line-height: 32px; font-weight:bold;"/> airborne flights
+                                <b>Current Traffic :</b> <span th:text="${currentTraffic}" style="color:#07c; font-size:17px; line-height: 32px; font-weight:bold;"/> airborne flights
                                 <span>
                                     <img th:src="@{/img/aircraft.png}" id="aircraft" style="max-width: 100%; max-height: 100%; width: 20px; height: auto"/>
                                 </span>
@@ -50,7 +50,7 @@
                         <li>
                             <b>Most Flown Airlines:</b>
                             <div class="content-mostFlownAirline" th:each="airline : ${mostFlownAirlines}">
-                                <span style="color:#07c; font-size:20px; line-height: 32px; font-weight:bold;" th:text="${airline.getKey().getName()}"/>
+                                <span style="color:#07c; font-size:17px; line-height: 32px; font-weight:bold;" th:text="${airline.getKey().getName()}"/>
                                 <span th:text="' (' + ${airline.getValue()} + ' total flights)'"/>
                                 <span>
                                     <img th:src="@{/img/airline.png}" id="airline" style="max-width: 100%; max-height: 100%; width: 15px; height: auto"/>
@@ -61,7 +61,7 @@
                         <li>
                             <b>Busiest Airports:</b>
                             <div class="content-mostFlownAirline" th:each="airport : ${busiestAirports}">
-                                <span style="color:#07c; font-size:20px; line-height: 32px; font-weight:bold;">
+                                <span style="color:#07c; font-size:17px; line-height: 32px; font-weight:bold;">
                                     <a th:href="@{/airport/} + ${airport.getKey().getId()}" th:text="${airport.getKey().getName()}"/>
                                 </span>
                                 <span th:text="' (' + ${airport.getValue()} + ' total arrivals and departures)'"/>
