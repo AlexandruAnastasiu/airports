@@ -63,11 +63,11 @@
                 <td th:text="${u.firstName}"></td>
                 <td th:text="${u.lastName}"></td>
                 <td th:text="${u.role}"></td>
-                <td>
+                <td th:if="${u.role != 'administrator'}">
                     <a th:href="@{/admin/settings/users/editRole/} + ${u.id}">
                         <img th:src="@{/img/edit.png}" id="edit" style="max-width: 100%; max-height: 100%; width: auto; height: auto"/>
                     </a>
-                    <a th:href="@{/admin/settings/flights/delete/} + ${u.id}">
+                    <a th:href="@{/admin/settings/users/delete/} + ${u.id}">
                         <img th:src="@{/img/delete.png}" id="delete" style="max-width: 100%; max-height: 100%; width: auto; height: auto"/>
                     </a>
                 </td>
