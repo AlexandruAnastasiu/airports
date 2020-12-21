@@ -19,6 +19,7 @@ import ro.siit.airports.service.FlightService;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -48,11 +49,10 @@ public class HomeController {
         model.addAttribute("airportNames", airportNames);
         Integer currentTraffic = flightService.getCurrentTraffic();
         model.addAttribute("currentTraffic", currentTraffic);
-        Airline mostFlownAirline = airlineService.getMostFlownAirline();
-        model.addAttribute("mostFlownAirline", mostFlownAirline.getName());
-        Airport busiestAirport = airportService.getBusiestAirport();
-        model.addAttribute("busiestAirportName", busiestAirport.getName());
-        model.addAttribute("busiestAirportId", busiestAirport.getId());
+        Map<Airline, Long> mostFlownAirlines = airlineService.getMostFlownAirlines();
+        model.addAttribute("mostFlownAirlines", mostFlownAirlines.entrySet());
+        Map<Airport, Long> busiestAirports = airportService.getBusiestAirports();
+        model.addAttribute("busiestAirports", busiestAirports.entrySet());
         return "home-page";
     }
 

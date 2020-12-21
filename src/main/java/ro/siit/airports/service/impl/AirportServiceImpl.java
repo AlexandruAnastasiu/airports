@@ -16,8 +16,10 @@ import ro.siit.airports.service.AirportService;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
@@ -63,15 +65,27 @@ public class AirportServiceImpl implements AirportService {
     }
 
     @Override
-    public Airport getBusiestAirport() {
+    public Map<Airport, Long> getBusiestAirports() {
         List<Flight> allFlights = flightRepository.findAll();
 
         List<Airport> departureAirportsList = allFlights.stream().map(e -> e.getDepartureAirport()).collect(Collectors.toList());
         List<Airport> arrivalAirportsList = allFlights.stream().map(e -> e.getArrivalAirport()).collect(Collectors.toList());
         List<Airport> airportsList = departureAirportsList;
         airportsList.addAll(arrivalAirportsList);
+        /*
         Airport busiestAirport = airportsList.stream().reduce(BinaryOperator.maxBy((o1, o2) -> Collections.frequency(airportsList, o1) -
                 Collections.frequency(airportsList, o2))).orElse(null);
         return busiestAirport;
+         */
+
+        Map<Airport, Long> elementCountMap = airportsList.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        Map<Airport, Long> result = elementCountMap.values().stream()
+                .max(Long::compareTo).map(maxValue -> elementCountMap.entrySet().stream()
+                        .filter(entry -> maxValue.equals(entry.getValue())).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue())))
+                .orElse(Collections.emptyMap());
+
+        return result;
     }
 }

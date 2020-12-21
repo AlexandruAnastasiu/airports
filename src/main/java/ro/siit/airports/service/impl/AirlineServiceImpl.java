@@ -15,7 +15,9 @@ import ro.siit.airports.service.AirlineService;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,12 +46,23 @@ public class AirlineServiceImpl implements AirlineService {
     }
 
     @Override
-    public Airline getMostFlownAirline() {
+    public Map<Airline, Long> getMostFlownAirlines() {
         List<Flight> allFlights = flightRepository.findAll();
 
         List<Airline> airlinesList = allFlights.stream().map(e -> e.getAirline()).collect(Collectors.toList());
+
+        /*
         Airline mostFlownAirline = airlinesList.stream().reduce(BinaryOperator.maxBy((o1, o2) -> Collections.frequency(airlinesList, o1) -
-                Collections.frequency(airlinesList, o2))).orElse(null);
-        return mostFlownAirline;
+                Collections.frequency(airlinesList, o2))).orElse(null); */
+
+        Map<Airline, Long> elementCountMap = airlinesList.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        Map<Airline, Long> result = elementCountMap.values().stream()
+                .max(Long::compareTo).map(maxValue -> elementCountMap.entrySet().stream()
+                        .filter(entry -> maxValue.equals(entry.getValue())).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue())))
+                .orElse(Collections.emptyMap());
+
+        return result;
     }
 }
