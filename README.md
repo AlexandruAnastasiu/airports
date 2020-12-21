@@ -1,5 +1,7 @@
 # Airports App - 2020
 This web application offers search functionality for any flight, airport or airline in the world
+------------------------------------------------------------
+The app was built with the Maven project management tool, Spring Framework, Spring Security and the Thymeleaf template engine.
 ## Build the project
 To build this project you need Maven. You can download the Maven tool by accessing the link below:
 [Download Maven]( http://maven.apache.org)
