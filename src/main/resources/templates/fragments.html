@@ -48,7 +48,6 @@
                         <h3 class="modal-title">LOGIN</h3>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-
                     <div class="modal-body">
                         <form th:action="@{/login}" method="POST">
                             <div class="form-group">
@@ -60,12 +59,16 @@
                             <div>
                                 <button type="submit" class="btn btn-success">Sign in</button>
                             </div>
+                            <div>
+                                <a th:href="@{/register}">
+                                    <button type="button" class="btn btn-info">Register</button>
+                                </a>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>

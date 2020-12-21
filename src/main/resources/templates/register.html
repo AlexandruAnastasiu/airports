@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css}">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+</head>
+<body>
+<div class="wrapper" style="background-image: url('img/bg-registration.jpg');">
+    <div class="inner">
+        <div class="image-holder">
+            <a th:href="@{/home}"><img th:src="@{img/registration-form.jpg}" alt=""></a>
+        </div>
+        <form th:action="@{/register}" method="post" th:object="${newUser}">
+            <h3>Register now!</h3>
+            <div class="form-group">
+                <input type="text" placeholder="First Name" class="form-control" th:field="*{firstName}">
+                <input type="text" placeholder="Last Name" class="form-control" th:field="*{lastName}">
+            </div>
+            <div class="form-wrapper">
+                <input type="text" placeholder="Email Address" class="form-control" th:field="*{email}">
+                <i class="zmdi zmdi-email"></i>
+            </div>
+            <div class="form-wrapper">
+                <input type="password" placeholder="Password" class="form-control" th:field="*{password}">
+                <i class="zmdi zmdi-lock"></i>
+            </div>
+            <div class="form-wrapper">
+                <input type="password" placeholder="Confirm Password" class="form-control" th:field="*{matchingPassword}">
+                <i class="zmdi zmdi-lock"></i>
+            </div>
+            <button>Register
+                <i class="zmdi zmdi-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

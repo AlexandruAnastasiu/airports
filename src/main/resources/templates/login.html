@@ -6,70 +6,39 @@
     <title>Login page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- for responsive carousel and toggle nav menu-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <!-- Fonts and icons -->
-    <script src="https://kit.fontawesome.com/04daf65bfb.js" crossorigin="anonymous"></script>
-    <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-
-    <!-- Show password -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js">
-    </script>
-
+    <link rel="stylesheet" th:href="@{/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css}">
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
 </head>
-
 <body>
-
-<div class="container">
-
-    <div class="general-form">
+<div class="wrapper" style="background-image: url('img/bg-registration.jpg');">
+    <div class="inner">
+        <div class="image-holder">
+            <a th:href="@{/home}"><img th:src="@{img/registration-form.jpg}" alt=""></a>
+        </div>
         <form th:action="@{/login}" method="POST">
-            <h2>Log In</h2>
-            <div class="form-group" th:if="${param.error}">
+            <h3>Log In now!</h3>
+            <div class="form-group" th:if="${param.error}" style="color:red">
                 Invalid username and/or password.
             </div>
-            <div class="form-group" th:if="${param.logout}">
+            <div class="form-group" th:if="${param.logout}" style="color:green">
                 You have been logged out successfully.
             </div>
             <div class="form-group" th:if="${message}">
                 <span th:text="${message}">Display this message.</span>
             </div>
-
-            <div class="form-group">
-                <label for="username"> Username</label>
+            <div class="form-wrapper">
                 <input class="form-control" placeholder="E-mail address" id="username" name="username" type="text">
+                <i class="zmdi zmdi-email"></i>
             </div>
-
-            <div class="form-group">
-                <label for="password"> Password </label>
+            <div class="form-wrapper">
                 <input class="form-control" placeholder="Password" id="password" name="password" type="password" data-toggle="password"/>
+                <i class="zmdi zmdi-lock"></i>
             </div>
-
-            <div>
-                <button class="btn btn-primary btn-block btn-lg btnform" type="submit">Log In</button>
-            </div>
+            <button>Login
+                <i class="zmdi zmdi-arrow-right"></i>
+            </button>
         </form>
-        <!--
-        <div class="text-center">
-            <a th:href="@{/reset-password}" href="reset-password.html">Forgot password?</a>
-        </div>
-        -->
-        <div class="text-center">
-            Don't have an account? <a th:href="@{/register}" href="register-style.html">Sign up here</a>
-        </div>
-        <div class="text-center">
-            <a th:href="@{/}">Home Page</a>
-        </div>
     </div>
-
 </div>
-
 </body>
-
 </html>

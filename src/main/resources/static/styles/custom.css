@@ -85,6 +85,13 @@
 .btn.btn-success:not(:disabled):not(.disabled).active:focus {
   box-shadow: 0 0 0 0.2rem rgba(244,198,19,1);
 }
+.btn.btn-info {
+  position: absolute;
+  top:81%;
+  right: 5%;
+  width: 120px;
+  transform: translateY(-50%);
+}
 /*---------ModalLogin----------*/
 #loginModal {
    position: absolute;
